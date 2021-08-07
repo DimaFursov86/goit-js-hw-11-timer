@@ -82,23 +82,30 @@
 
 
  class CountdownTimer {
-  constructor() {
+   constructor({ selector, targetDate } ) {
     this.timerId = null;
-    this.dateStart = null;
-    this.startBtn = document.querySelector('button[data-action-start]');
-    this.stopBtn = document.querySelector('button[data-action-stop]');
-    this.sec = document.querySelector('[data-value="secs"]');
-    this.min = document.querySelector('[data-value="mins"]');
-    this.hours = document.querySelector('[data-value="hours"]');
-    this.days = document.querySelector('[data-value="days"]');
+    this.targetDate = targetDate;
+     this.selector = selector;
+     
+     this.timerContainer = document.querySelector(`${this.selector}`);
 
+     this.startBtn = this.timerContainer.previousElementSibling.previousElementSibling;
+    this.stopBtn = this.timerContainer.previousElementSibling;
+     
+    // this.startBtn = document.querySelector('button[data-action-start]');
+    // this.stopBtn = document.querySelector('button[data-action-stop]');
+    this.sec = this.timerContainer.children[3].children[0];
+    this.min = this.timerContainer.children[2].children[0];
+    this.hours = this.timerContainer.children[1].children[0];
+    this.days = this.timerContainer.children[0].children[0];
+     
     this.action = this.action.bind(this);
     this.start = this.start.bind(this);
     this.stop = this.stop.bind(this);
   }
 
   action() {
-    const time = this.targetDate - Date.now();
+    const time = this.targetDate.getTime() - Date.now();
       
     const sec = Math.floor((time % (1000 * 60)) / 1000);
     const minutes = Math.floor((time % (1000 * 60 * 60)) / (1000 * 60));
@@ -113,7 +120,8 @@
 
   start() {
     this.timerId = setInterval(this.action, 1000);
-    this.targetDate = new Date(2021, 7, 14, 5, 40, 0, 0).getTime();
+    // this.targetDate = this.targetDate
+    // console.dir(this.test)
   }
 
   stop() {
@@ -128,8 +136,13 @@
 
 const watch = new CountdownTimer({
   selector: '#timer-1',
-    targetDate: new Date(2021, 7, 14, 5, 40, 0, 0).getTime(),
+  targetDate: new Date(2021, 7, 14, 5, 40, 0, 0)
   
 });
 watch.init();
-
+const watch2 = new CountdownTimer({
+  selector: '#timer-2',
+  targetDate: new Date(2021, 8, 14, 5, 40, 0, 0)
+  
+});
+watch2.init();
