@@ -85,15 +85,13 @@
    constructor({ selector, targetDate } ) {
     this.timerId = null;
     this.targetDate = targetDate;
-     this.selector = selector;
+    this.selector = selector;
      
-     this.timerContainer = document.querySelector(`${this.selector}`);
+    this.timerContainer = document.querySelector(`${this.selector}`);
 
-     this.startBtn = this.timerContainer.previousElementSibling.previousElementSibling;
+    this.startBtn = this.timerContainer.previousElementSibling.previousElementSibling;
     this.stopBtn = this.timerContainer.previousElementSibling;
      
-    // this.startBtn = document.querySelector('button[data-action-start]');
-    // this.stopBtn = document.querySelector('button[data-action-stop]');
     this.sec = this.timerContainer.children[3].children[0];
     this.min = this.timerContainer.children[2].children[0];
     this.hours = this.timerContainer.children[1].children[0];
@@ -120,8 +118,6 @@
 
   start() {
     this.timerId = setInterval(this.action, 1000);
-    // this.targetDate = this.targetDate
-    // console.dir(this.test)
   }
 
   stop() {
