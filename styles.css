@@ -4,7 +4,7 @@ body {
 .timer {
   display: flex;
   margin-bottom: 30px;
-  justify-content: center;
+  justify-content: flex-start;
 }
 .timer-btn {
   font-weight: 700;
@@ -15,7 +15,7 @@ body {
   background-color: blue;
   text-align: center;
   letter-spacing: 0.06em;
-
+  margin: 0 auto;
   align-items: center;
   min-width: 200px;
 
